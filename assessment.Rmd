@@ -1,8 +1,8 @@
 ---
-output: html_document
+output: pdf_document
 ---
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(echo=FALSE, fig.align='center')
+knitr::opts_chunk$set(echo=FALSE)
 
 ```
 
@@ -149,29 +149,13 @@ between cars with manual and automatic transmission was not significant.
 Other factors such as engine power and car weight were more important factors
 affecting fuel consumption.
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+\newpage
 
 Appendix
 ========
 
-**My plots are not showing using `knit2pdf()` for some reason so I saved the html output from `knit2html()`. :(**
-
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(echo=TRUE, fig.align='center')
+knitr::opts_chunk$set(echo=TRUE)
 ```
 
 ```{r, fig.height=3, fig.width=3, fig.show='hold'}
@@ -208,7 +192,6 @@ anova(fit4, fit3)
 outliers <- c("Chrysler Imperial", "Fiat 128", "Toyota Corolla")
 mtcars3 <- mtcars2[!is.element(rownames(mtcars2), outliers), ]
 fit5 <- lm(mpg ~ hp + wt + am, data = mtcars3)
-
 op <- par(mfrow = c(2,4), mar = c(4,2,2,1))
 plot(fit4)
 plot(fit5)
@@ -216,8 +199,6 @@ par(op)
 ```
 
 ```{r}
-coef5 <- summary(fit5)$coef
-coef5
-CI <- coef5[4, 1] + c(-1, 1) * qt(0.975, df = fit5$df)
-CI
+print(coef5 <- summary(fit5)$coef)
+print(CI <- coef5[4, 1] + c(-1, 1) * qt(0.975, df = fit5$df))
 ```
